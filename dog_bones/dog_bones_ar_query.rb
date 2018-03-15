@@ -25,6 +25,6 @@ end
   else
     @average = @ratings.inject(0.0) { |sum, el| sum + el } / @ratings.length
   end
-  data = {'id' => dog.id, 'bones_quantity' => @count, 'average_rating' => @average}
+  @data = {'id' => dog.id, 'bones_quantity' => @count, 'average_rating' => @average}
 end
 puts @dog_bones_data

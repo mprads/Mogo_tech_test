@@ -6,9 +6,19 @@ require 'mysql2'
 require 'yaml'
 
 require './models/bone'
-require './models/dog.rb'
+require './models/dog'
+require './services/get_bones_and_rating'
 
 # Establish our connection to our serverless mysql database.
 ActiveRecord::Base.establish_connection(YAML::load(File.open('config/database.yml')))
 
-puts Dog.all_dogs_bones_and_rating
+class DogController
+  def show
+    dogs = Dog.all
+    dogs.map do |dog|
+      get_bones_and_rating(dog)
+    end
+  end
+end
+
+puts DogController.new.show

@@ -11,14 +11,21 @@ namespace :db do
   task :migrate do
     ActiveRecord::Base.establish_connection(db_config)
     ActiveRecord::Migrator.migrate("db/migrate/")
-    Rake::Task["db:schema"].invoke
     puts "Database migrated."
   end
 
   desc "Seed the database"
   task :seed do
     ActiveRecord::Base.establish_connection(db_config_admin)
-    require_all 'models/*.rb'
-    require_relative 'db/seeds.rb'
+    require_all "models/*.rb"
+    require_relative "db/seeds.rb"
+    puts "Database seeded"
+  end
+
+  desc "Drop the database"
+  task :drop do
+    ActiveRecord::Base.establish_connection(db_config_admin)
+    ActiveRecord::Base.connection.drop_database(db_config["database"])
+    puts "Database deleted."
   end
 end

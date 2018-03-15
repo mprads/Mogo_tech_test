@@ -10,6 +10,9 @@ Steps to run question two
 
 To run question 2.a, once the database is created and seeded you can use the method of your choice to run the raw query in `dogbones/dog_bones_raw_query.sql`
 
-To run question 2.b go into `/dog_bones` and run `ruby dog_bones_ar_query.rb`
+To run question 2.b go into `/dog_bones/controllers` and run `ruby dogs_controller.rb`
+
+To delete database run `rake db:drop` from `/dog_bones`
 
 To run question three type `print_shapes.rb` in the root directory
+
